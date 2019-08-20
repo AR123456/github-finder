@@ -2,18 +2,18 @@ import React, { Component } from "react";
 
 import "./App.css";
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <h1>Hello from react</h1>
-//     </div>
-//   );
-// }
 class App extends Component {
+  foo = () => "bars";
   render() {
+    const name = "John Doe";
+    const loading = false;
     return (
       <div className="App">
-        <h1>Hello from react</h1>
+        {loading ? (
+          <h4>Loading...</h4>
+        ) : (
+          <h1>Hello {this.foo().toUpperCase()}</h1>
+        )}
       </div>
     );
   }
