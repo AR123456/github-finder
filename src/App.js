@@ -9,7 +9,6 @@ import About from "./components/pages/About";
 
 import axios from "axios";
 import GithubState from "./context/github/GithubState";
-
 import "./App.css";
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -24,7 +23,6 @@ const App = () => {
     const res = await axios.get(
       `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret={process.env.REACT_APP_GITHUB_SECRET}`
     );
-
     setUsers(res.data.items);
     setLoading(false);
   };
@@ -34,7 +32,6 @@ const App = () => {
     const res = await axios.get(
       `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret={process.env.REACT_APP_GITHUB_SECRET}`
     );
-
     setUser(res.data);
     setLoading(false);
   };
@@ -44,22 +41,18 @@ const App = () => {
     const res = await axios.get(
       `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret={process.env.REACT_APP_GITHUB_SECRET}`
     );
-
-    setRepos(res.data);
+    getUserRepos(res.data);
     setLoading(false);
   };
 
   //Clear users from state
-
   const clearUsers = () => {
     setUsers([]);
     setLoading(false);
   };
-
   //set alert
   const showAlert = (msg, type) => {
     setAlert({ msg, type });
-
     setTimeout(() => setAlert(null), 500);
   };
 
